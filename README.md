@@ -1,6 +1,6 @@
-# project
+# vue-popup
 
-> A Vue.js project
+> This is a vue-popup component.
 
 ## Build Setup
 
@@ -14,17 +14,34 @@ npm run dev
 # build for production with minification
 npm run build
 
-# build for production and view the bundle analyzer report
-npm run build --report
-
-# run unit tests
-npm run unit
-
-# run e2e tests
-npm run e2e
-
-# run all tests
-npm test
 ```
+## 使用说明
+**添加**
+  
+- 在popup文件夹下建个文件夹来存放你添加的模板组件
+  
+**调用**
 
-For detailed explanation on how things work, checkout the [guide](http://vuejs-templates.github.io/webpack/) and [docs for vue-loader](http://vuejs.github.io/vue-loader).
+  ```
+  @click="showPopup({e: $event, popupType: 'test', selectData = [], queryId = 111, visibleBtn = false})"
+  // 需要哪些参数传哪些
+  import bus from 'util/bus'
+  showPopup(query) {
+     bus.$emit('popup-show', query)
+  }
+  ```
+
+**参数说明**
+
+- e: $event
+- popupType: 约定floatPanel加载组件参数，String
+- selectData: 控件匹配数据，Array
+- queryId: 获取组件数据id或其他标识，Number
+- visibleBtn: true/false 是否显示右上角关闭按钮，Boolean
+
+**弹窗的宽高由你编写的组件的宽高确定**
+
+**组件之间的通信**
+
+- 传值
+- 修改数据
