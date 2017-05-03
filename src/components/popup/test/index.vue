@@ -19,6 +19,9 @@
       // selectData这个组件被选中的选项
       selectData: {
         type: Array
+      },
+      singleslct: {
+        type: Boolean
       }
     },
     data () {

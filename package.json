@@ -2,7 +2,7 @@
   "name": "project",
   "version": "1.0.0",
   "description": "This is a vue-popup component.",
-  "author": "",
+  "author": "wuyaoxing",
   "private": true,
   "scripts": {
     "dev": "node build/dev-server.js",
