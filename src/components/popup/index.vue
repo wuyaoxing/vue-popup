@@ -16,7 +16,15 @@
   // 添加
   // 在popup文件夹下建个文件夹来存放你添加的模板组件
   // 调用
-  // @click="showPopup({e: $event, popupType: 'test', selectData = [], queryId = 111, singleslct = false, visibleBtn = false})"
+  // @click="showPopup({
+  //     e: $event,
+  //     popupType: 'test',
+  //     selectData = [],
+  //     queryId = 111,
+  //     placement = 'bottomEnd',
+  //     singleslct = false,
+  //     visibleBtn = false
+  // })"
   // 需要哪些参数传哪些
   // import bus from 'util/bus'
   // showPopup(query) {
@@ -27,15 +35,17 @@
   // popupType: 约定floatPanel加载组件参数，String
   // selectData: 控件匹配数据，Array
   // queryId: 获取组件数据id或其他标识，Number
-  // singleslct: 控制单选多选时操作, Boolean
+
+  // placement: top/topStart/topEnd/bottom/bottomStart/bottomEnd
+  // /left/leftStart/leftEnd/right/rightStart/rightEnd
+  // popup出现的位置，String
+
+  // singleslct: true/false 控制单选多选时操作，Boolean
   // visibleBtn: true/false 是否显示右上角关闭按钮，Boolean
 
   // 弹窗的宽高由你编写的组件的宽高确定
 
   // 组件之间的通信
-
-  // TODO
-  // 增加控制popup位置js算法
 
   import popupContainer from './container'
   import test from './test'
@@ -51,13 +61,14 @@
     data () {
       return {
         typeArray: ['test'],
-        visible: false,
+        el: null,
+        popupType: '',
+        selectData: [],
+        queryId: -1,
+        placement: 'bottomEnd',
         singleslct: false,
         visibleBtn: true,
-        popupType: '',
-        queryId: -1,
-        selectData: [],
-        el: null,
+        visible: false,
         popupStyle: {
           top: 0,
           left: 0
@@ -65,8 +76,15 @@
       }
     },
     methods: {
-      showPopup ({e, popupType, selectData = [], queryId = NaN, singleslct = false, visibleBtn = true}) {
-        console.log(e, popupType, selectData, queryId, visibleBtn)
+      showPopup ({
+        e, popupType,
+        selectData = [],
+        queryId = NaN,
+        placement = 'bottomEnd',
+        singleslct = false,
+        visibleBtn = true
+      }) {
+        console.log(e, popupType, selectData, queryId, placement, visibleBtn)
         if (this.typeArray.indexOf(popupType) === -1) {
           this.onCloseHandle()
           return
@@ -77,13 +95,14 @@
         this.popupType = popupType
         this.queryId = queryId
         this.selectData = selectData
+        this.placement = placement
         this.singleslct = singleslct
         this.visible = true
         // this.reposition()
         listenerResize(this.reposition)
       },
       reposition () {
-        const repositionCalculate = calculate(this.el)
+        const repositionCalculate = calculate(this.el, this.placement)
         this.popupStyle.top = repositionCalculate.top
         this.popupStyle.left = repositionCalculate.left
       },

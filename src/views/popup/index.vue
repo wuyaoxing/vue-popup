@@ -1,10 +1,23 @@
 <template>
   <div class="popup">
-    <div class="popup-item leftTop" @click="showPopup">左上</div>
-    <div class="popup-item rightTop" @click="showPopup">右上</div>
-    <div class="popup-item center" @click="showPopup">中间</div>
-    <div class="popup-item leftBottom" @click="showPopup">左下</div>
-    <div class="popup-item rightBottom" @click="showPopup">右下</div>
+    <div class="popup-base popup-item leftTop" @click="showPopup({e: $event, popupType: 'test', placement: 'topStart', visibleBtn: false})">左上</div>
+    <div class="popup-base popup-item rightTop" @click="showPopup({e: $event, popupType: 'test', placement: 'leftStart', visibleBtn: false})">右上</div>
+    <div class="center-item">
+      <div class="popup-base" @click="showPopup({e: $event, popupType: 'test', placement: 'right'})">right</div>
+      <div class="popup-base mg-15" @click="showPopup({e: $event, popupType: 'test', placement: 'rightStart'})">rightStart</div>
+      <div class="popup-base mg-15" @click="showPopup({e: $event, popupType: 'test', placement: 'rightEnd'})">rightEnd</div>
+      <div class="popup-base mg-15" @click="showPopup({e: $event, popupType: 'test', placement: 'top'})">top</div>
+      <div class="popup-base" @click="showPopup({e: $event, popupType: 'test', placement: 'topStart'})">topStart</div>
+      <div class="popup-base mg-15" @click="showPopup({e: $event, popupType: 'test', placement: 'topEnd'})">topEnd</div>
+      <div class="popup-base mg-15" @click="showPopup({e: $event, popupType: 'test', placement: 'bottom'})">bottom</div>
+      <div class="popup-base mg-15" @click="showPopup({e: $event, popupType: 'test', placement: 'bottomStart'})">bottomStart</div>
+      <div class="popup-base mg-15" @click="showPopup({e: $event, popupType: 'test', placement: 'bottomEnd'})">bottomEnd</div>
+      <div class="popup-base mg-15" @click="showPopup({e: $event, popupType: 'test', placement: 'left'})">left</div>
+      <div class="popup-base mg-15" @click="showPopup({e: $event, popupType: 'test', placement: 'leftStart'})">leftStart</div>
+      <div class="popup-base mg-15" @click="showPopup({e: $event, popupType: 'test', placement: 'leftEnd'})">leftEnd</div>
+    </div>
+    <div class="popup-base popup-item leftBottom" @click="showPopup({e: $event, popupType: 'test', placement: 'rightEnd'})">左下</div>
+    <div class="popup-base popup-item rightBottom" @click="showPopup({e: $event, popupType: 'test', placement: 'topEnd'})">右下</div>
     <popup></popup>
   </div>
 </template>
@@ -19,8 +32,7 @@
       popup
     },
     methods: {
-      showPopup (e) {
-        const query = {e, popupType: 'test'}
+      showPopup (query) {
         bus.$emit('popup-show', query)
       }
     }
@@ -32,15 +44,36 @@
     height: 100%;
     position: relative;
   }
-  .popup-item {
-    width: 80px;
+  .popup-base {
+    padding: 5px 15px;
+    /*width: 70px;*/
     height: 50px;
     line-height:50px;
     text-align: center;
     color: #fff;
     background: #311b92;
-    position: absolute;
     cursor: pointer;
+  }
+  .popup-item {
+    position: absolute;
+  }
+  .center-item {
+    display: flex;
+    /*flex-direction: column;*/
+    /*justify-content: center;*/
+    justify-content: space-between;
+    width: 100%;
+    height: auto;
+    border: 1px solid #311b92;
+    position: absolute;
+    top: 50%;
+    margin-top: -45px;
+  }
+  .center-item div {
+
+  }
+  .mg-15 {
+    margin-left: 10px;
   }
   .leftTop {
     top: 0;
