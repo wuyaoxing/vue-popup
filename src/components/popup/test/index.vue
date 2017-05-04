@@ -36,8 +36,8 @@
 </script>
 <style>
   .test {
-    width: 350px;
-    height: 330px;
+    min-width: 200px;
+    min-height: 200px;
   }
   .header {
     height: 45px;

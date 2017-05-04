@@ -4,17 +4,17 @@
     <div class="popup-base popup-item rightTop" @click="showPopup({e: $event, popupType: 'test', placement: 'leftStart', visibleBtn: false})">右上</div>
     <div class="center-item">
       <div class="popup-base" @click="showPopup({e: $event, popupType: 'test', placement: 'right'})">right</div>
-      <div class="popup-base mg-15" @click="showPopup({e: $event, popupType: 'test', placement: 'rightStart'})">rightStart</div>
-      <div class="popup-base mg-15" @click="showPopup({e: $event, popupType: 'test', placement: 'rightEnd'})">rightEnd</div>
-      <div class="popup-base mg-15" @click="showPopup({e: $event, popupType: 'test', placement: 'top'})">top</div>
-      <div class="popup-base" @click="showPopup({e: $event, popupType: 'test', placement: 'topStart'})">topStart</div>
-      <div class="popup-base mg-15" @click="showPopup({e: $event, popupType: 'test', placement: 'topEnd'})">topEnd</div>
-      <div class="popup-base mg-15" @click="showPopup({e: $event, popupType: 'test', placement: 'bottom'})">bottom</div>
-      <div class="popup-base mg-15" @click="showPopup({e: $event, popupType: 'test', placement: 'bottomStart'})">bottomStart</div>
-      <div class="popup-base mg-15" @click="showPopup({e: $event, popupType: 'test', placement: 'bottomEnd'})">bottomEnd</div>
-      <div class="popup-base mg-15" @click="showPopup({e: $event, popupType: 'test', placement: 'left'})">left</div>
-      <div class="popup-base mg-15" @click="showPopup({e: $event, popupType: 'test', placement: 'leftStart'})">leftStart</div>
-      <div class="popup-base mg-15" @click="showPopup({e: $event, popupType: 'test', placement: 'leftEnd'})">leftEnd</div>
+      <div class="popup-base mg-10" @click="showPopup({e: $event, popupType: 'test', placement: 'rightStart'})">rightStart</div>
+      <div class="popup-base mg-10" @click="showPopup({e: $event, popupType: 'test', placement: 'rightEnd'})">rightEnd</div>
+      <div class="popup-base mg-10" @click="showPopup({e: $event, popupType: 'test', placement: 'top', visibleBtn: false})">top</div>
+      <div class="popup-base mg-10" @click="showPopup({e: $event, popupType: 'test', placement: 'topStart'})">topStart</div>
+      <div class="popup-base mg-10" @click="showPopup({e: $event, popupType: 'test', placement: 'topEnd'})">topEnd</div>
+      <div class="popup-base mg-10" @click="showPopup({e: $event, popupType: 'test', placement: 'bottom', visibleBtn: false})">bottom</div>
+      <div class="popup-base mg-10" @click="showPopup({e: $event, popupType: 'test', placement: 'bottomStart'})">bottomStart</div>
+      <div class="popup-base mg-10" @click="showPopup({e: $event, popupType: 'test', placement: 'bottomEnd'})">bottomEnd</div>
+      <div class="popup-base mg-10" @click="showPopup({e: $event, popupType: 'test', placement: 'left'})">left</div>
+      <div class="popup-base mg-10" @click="showPopup({e: $event, popupType: 'test', placement: 'leftStart'})">leftStart</div>
+      <div class="popup-base mg-10" @click="showPopup({e: $event, popupType: 'test', placement: 'leftEnd'})">leftEnd</div>
     </div>
     <div class="popup-base popup-item leftBottom" @click="showPopup({e: $event, popupType: 'test', placement: 'rightEnd'})">左下</div>
     <div class="popup-base popup-item rightBottom" @click="showPopup({e: $event, popupType: 'test', placement: 'topEnd'})">右下</div>
@@ -72,7 +72,7 @@
   .center-item div {
 
   }
-  .mg-15 {
+  .mg-10 {
     margin-left: 10px;
   }
   .leftTop {
