@@ -28,7 +28,7 @@ npm run build
 **调用**
 
   ```
-  @click="showPopup({e: $event, popupType: 'test', selectData = [], queryId = 111, placement = bottomEnd, singleslct = false, visibleBtn = false})"
+  @click="showPopup({e: $event, popupType: 'test', title = 'xxx', modal = true, selectData = [], queryId = 111, placement = bottomEnd, singleslct = false, visibleBtn = false})"
   // 需要哪些参数传哪些
   import bus from 'util/bus'
   showPopup(query) {
@@ -40,11 +40,14 @@ npm run build
 
 - e: $event
 - popupType: 约定floatPanel加载组件参数，String
+- title: 标题
 - selectData: 控件匹配数据，Array
 - queryId: 获取组件数据id或其他标识，Number
 - placement: top/topStart/topEnd/bottom/bottomStart/bottomEnd/left/leftStart/leftEnd/right/rightStart/rightEnd popup出现的位置，String
 - singleslct: true/false 控制单选多选时操作，Boolean
 - visibleBtn: true/false 是否显示右上角关闭按钮，Boolean
+- modal: true/false 是否需要遮罩
+- handler: 回调函数，用于记录你在弹窗上操作是选择的值
 
 **弹窗的宽高由你编写的组件的宽高确定**
 
