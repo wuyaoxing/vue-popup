@@ -3,11 +3,15 @@
                    :top="popupStyle.top"
                    :left="popupStyle.left"
                    :visibleBtn="visibleBtn"
+                   :modal="modal"
                    @popup-hide="onCloseHandle">
     <component :is="popupType"
+               :title="title"
                :queryId="queryId"
                :singleslct="singleslct"
-               :selectData="selectData">
+               :selectData="selectData"
+               @handler="handler"
+               @popup-hide="onCloseHandle">
     </component>
   </popup-container>
 </template>
@@ -19,6 +23,7 @@
   // @click="showPopup({
   //     e: $event,
   //     popupType: 'test',
+  //     title: '标题',
   //     selectData = [],
   //     queryId = 111,
   //     placement = 'bottomEnd',
@@ -33,6 +38,7 @@
 
   // e: $event
   // popupType: 约定floatPanel加载组件参数，String
+  // title: 标题
   // selectData: 控件匹配数据，Array
   // queryId: 获取组件数据id或其他标识，Number
 
@@ -42,6 +48,7 @@
 
   // singleslct: true/false 控制单选多选时操作，Boolean
   // visibleBtn: true/false 是否显示右上角关闭按钮，Boolean
+  // modal: true/false 是否需要遮罩
 
   // 弹窗的宽高由你编写的组件的宽高确定
 
@@ -63,12 +70,15 @@
         typeArray: ['test'],
         el: null,
         popupType: '',
+        title: '',
         selectData: [],
         queryId: -1,
         placement: 'bottomEnd',
         singleslct: false,
+        modal: false,
         visibleBtn: true,
         visible: false,
+        handler: null,
         popupStyle: {
           top: 0,
           left: 0
@@ -78,13 +88,16 @@
     methods: {
       showPopup ({
         e, popupType,
+        title = '',
         selectData = [],
         queryId = NaN,
         placement = 'bottomEnd',
         singleslct = false,
-        visibleBtn = true
+        modal = true,
+        visibleBtn = true,
+        handler = data => { console.warn('未传handler，选中结果:', data) }
       }) {
-        console.log(e, popupType, selectData, queryId, placement, visibleBtn)
+        console.log(e, popupType, title, selectData, queryId, placement, singleslct, modal, visibleBtn)
         if (this.typeArray.indexOf(popupType) === -1) {
           this.onCloseHandle()
           return
@@ -94,10 +107,13 @@
 
         this.popupType = popupType
         this.queryId = queryId
+        this.modal = modal
+        this.title = title
         this.selectData = selectData
         this.placement = placement
         this.singleslct = singleslct
         this.visible = true
+        this.handler = handler
         // this.reposition()
         listenerResize(this.reposition)
       },

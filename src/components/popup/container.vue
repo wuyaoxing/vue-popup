@@ -1,13 +1,13 @@
 <template>
   <transition name="fade">
-    <div class="vue-popup" v-show="visible" :style="{ top: top + 'px', left: left + 'px', zIndex }">
+    <div class="vue-popup" v-show="visible" :style="{ top: top + 'px', left: left + 'px', zIndex }" @mousedown="preventBubbling">
       <div class="vue-popup-container">
         <button type="button" v-if="visibleBtn" class="vue-popup-off" @click="hidePopup">
           <!--<el-icon name="close"></el-icon>-->X
         </button>
         <slot></slot>
       </div>
-      <div class="vue-popup-click-outside-layer" v-if="visible" @click="hidePopup"></div>
+      <div class="vue-popup-click-outside-layer" v-if="visible && modal" @click="hidePopup"></div>
     </div>
   </transition>
 </template>
@@ -37,12 +37,19 @@
         type: Boolean,
         default: false
       },
+      modal: {
+        type: Boolean,
+        default: false
+      },
       visibleBtn: {
         type: Boolean,
         default: true
       }
     },
     methods: {
+      preventBubbling (e) {
+        e.stopPropagation()
+      },
       hidePopup () {
         this.$emit('popup-hide', false)
       }

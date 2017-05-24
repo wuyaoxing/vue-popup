@@ -1,7 +1,7 @@
 <template>
   <div class="test">
     <div class="header">
-      标题
+      {{title}}
     </div>
     <div class="body">
       这里可以添加你的popup需要的内容！
@@ -12,6 +12,11 @@
   export default {
     name: 'testPopup',
     props: {
+      // 标题
+      title: {
+        type: String,
+        default: ''
+      },
       // queryId查找这个组件展示数据的id
       queryId: {
         type: Number
